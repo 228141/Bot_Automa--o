@@ -1,21 +1,17 @@
-''' REALIZAR BACKUP DE FORMULÁRIOS DO MÓDULO DO BPM
+'''
+1 - Entrar na planilha e extrair o processo.
 
-1 - Entrar no Site do Prodigi (https://prodigi.saobernardo.sp.gov.br/solar/)
+2 - Entro no Site do Prodigi (https://prodigi.saobernardo.sp.gov.br/solar/), e pesquiso o status do processo informado pelo usuário
 
-2 - Clicar no módulo do BPM / BPM - fomulário Dinâmico
+3 - Verificar se o processo está em andamento ou arquivado
 
-3 - Clicar no "Formulário"
+4 - Se estiver arquivado, inserir na planilha a informação de "Processo Arquivado"
 
-4 - Clicar em "Exportar"
+5 - Caso constrario (Se estiver em andamento) inserir na planilha a informação de "Em Andamento"
 
-5 - Clicar em "Salvar Como"
+6 - Inserir essas informações em uma nova Planilha
 
-6 - Abrir a pasta da Rede (\\fileserver-01\pmsbc\SA3\SA-32\PRODIGI\Formularios)
-
-7 - "Salvar" o documento na pasta da rede
-
-8 - O processo irá se repetir até todos os formulários sejam salvos
-
+7 - Repetir isso até finalizar ultimo processo da planilha.
 
 '''
 
@@ -24,3 +20,10 @@ import openpyxl
 #1 - Entrar na planilha e extrair o processo.
 
 planilha_clientes = openpyxl.load_workbook('proc_arquivados') 
+planilha_clientes = planilha_clientes['Planilha1']
+
+for linha in planilha_clientes.inter_rows(min_row=2,values_only=True):
+    processo , volume, unidade = linha
+    print(processo)
+    print(volume)
+    print(unidade)
